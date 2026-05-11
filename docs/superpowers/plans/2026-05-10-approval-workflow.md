@@ -6,6 +6,7 @@
 
 **Architecture:** `MiniVault.request_lease()` intercepts policies with `requires_approval=True` and raises `ApprovalRequired` instead of issuing a lease. An `ApprovalQueue` (new module) holds `PendingRequest` objects. `admin@corp` reviews the queue in Vault Admin and calls `vault.approve_request()` / `vault.reject_request()`. Persona runners catch the exception and yield a `"pending"` event.
 
+
 **Tech Stack:** Python 3.13, Pydantic v2, PyJWT, Streamlit, pytest, threading.RLock (in-memory, no persistence)
 
 ---
